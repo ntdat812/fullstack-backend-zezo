@@ -18,14 +18,7 @@ app.use(express.urlencoded({ extended: true })); //Parse URL-encoded bodies
 configViewEngine(app);
 
 //test connection
-
-//simple query
-// connection.query(
-//     'select * from Users',
-//     function (err, results, fields) {
-//         console.log(">>results: ", results); //trả về kết quả của câu truy vấn
-//     }
-// )
+connection();
 
 
 //khai báo route
