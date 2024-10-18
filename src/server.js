@@ -2,6 +2,8 @@ require('dotenv').config();
 const express = require('express');// commonhjs
 const configViewEngine = require('./config/viewEngine');
 const webRoutes = require('./routes/web');
+const apiRoutes = require('./routes/api');
+
 const connection = require('./config/database');
 
 //console.log("check", process.env);
@@ -20,6 +22,7 @@ configViewEngine(app);
 
 //khai báo route
 app.use('/', webRoutes);
+app.use('/v1/api/', apiRoutes);
 
 
 //test connection
