@@ -21,11 +21,12 @@ const getCreatePage = (req, res) => {
 }
 
 const getUpdatePage = async (req, res) => {
-    const userId = req.params.id;
+    const userId = req.params.id; //lấy ra id của người dùng được chọn để sửa
 
-    let user = await getUserById(userId);
+    //let user = await getUserById(userId);
+    let user = await User.findById(userId).exec(); //tìm kiếm người dùng trong cơ sở dữ liệu và truyền vào biến user
 
-    res.render('edit.ejs', { userEdit: user })
+    res.render('edit.ejs', { userEdit: user })// gửi dữ liệu đến trang để hiển thị
 }
 
 const postCreateUser = async (req, res) => {
@@ -45,7 +46,9 @@ const postUpdateUser = async (req, res) => {
 
     let { email, name, city, userId } = req.body;
 
-    await updateUserById(email, name, city, userId);
+
+    //await updateUserById(email, name, city, userId);
+    await User.updateOne({ _id: userId }, { email: email, name: name, city: city }); // tìm thằng có userID truyền vào và  update thằng đó
 
     //res.send('Update user succeed')
     res.redirect('/');

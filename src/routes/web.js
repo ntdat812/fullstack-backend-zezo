@@ -19,7 +19,7 @@ router.get('/ntdat', getNTDat);
 
 router.get('/create', getCreatePage);
 
-router.get('/update/:id', getUpdatePage);
+router.get('/update/:id', getUpdatePage); // lấy ra thông tin người dùng cần sửa đổi
 
 router.post('/create-user', postCreateUser);
 
