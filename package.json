@@ -1,0 +1,25 @@
+{
+  "name": "full_backend_zero",
+  "version": "1.0.0",
+  "description": "ntdat fullstack backend zero",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "dev": "nodemon ./src/server.js"
+  },
+  "keywords": [
+    "nodejs",
+    "react"
+  ],
+  "author": "Nguyen Thanh Dat",
+  "license": "ISC",
+  "dependencies": {
+    "dotenv": "^16.4.5",
+    "ejs": "^3.1.10",
+    "express": "^4.21.0",
+    "mysql2": "^3.11.3"
+  },
+  "devDependencies": {
+    "nodemon": "^3.1.7"
+  }
+}
