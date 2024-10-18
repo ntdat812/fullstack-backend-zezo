@@ -1,8 +1,10 @@
 const connection = require("../config/database");
-const { getAllUsers, getUserById, updateUserById, deleteUserById } = require("../services/CRUDSevice");
+const { getAllUsers, getUserById,
+    updateUserById, deleteUserById } = require("../services/CRUDSevice");
 
+const User = require("../models/user");
 const getHomepage = async (req, res) => {
-    let results = await getAllUsers();
+    let results = [];
     return res.render('home.ejs', { listUsers: results });
 }
 
@@ -30,27 +32,19 @@ const postCreateUser = async (req, res) => {
 
     let { email, name, city } = req.body;
 
-    console.log(">>>email: ", email, ">>>name: ", name, ">>>city: ", city,)
+    console.log(">>>email: ", email, ">>>name: ", name, ">>>city: ", city,);
+    // mysql
+    // let [results, fields] = await connection.query(
+    //     `INSERT INTO Users (email , name , city )VALUES (?,?,?)`, [email, name, city]);
+    // console.log(">>check results: ", results);
 
-    // connection.query(
-    //     `INSERT INTO Users (email , name , city )
-    // VALUES (?,?,?)`,
-    //     [email, name, city],
-    //     function (err, results) {
-    //         console.log(results);
-    //         res.send('Create user succeed!')
-    //     }
-    // )
-    let [results, fields] = await connection.query(
-        `INSERT INTO Users (email , name , city )VALUES (?,?,?)`, [email, name, city]);
-    console.log(">>check results: ", results);
-    // connection.query(
-    //     'select * from Users',
-    //     function (err, results, fields) {
-    //         console.log(">>results: ", results); //trả về kết quả của câu truy vấn
-    //     }
-    // )
-    //const [results, fields] = await connection.query('select * from Users');
+    //mongoDb
+    await User.create({
+        email: email,
+        name: name,
+        city: city,
+    })
+
     res.redirect('/');
 }
 

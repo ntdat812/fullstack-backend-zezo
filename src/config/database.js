@@ -22,6 +22,7 @@ const connection = async () => {
     try {
         //cau hinh ben .env va goi sang
         const options = {
+            dbName: process.env.DB_DATABASE,
             user: process.env.DB_USER,
             pass: process.env.DB_PASSWORD,
         }

@@ -3,7 +3,6 @@ const express = require('express');// commonhjs
 const configViewEngine = require('./config/viewEngine');
 const webRoutes = require('./routes/web');
 const connection = require('./config/database');
-const Kitten = require('./models/Kitten');
 
 //console.log("check", process.env);
 const app = express();// app express
@@ -22,9 +21,6 @@ configViewEngine(app);
 //khai báo route
 app.use('/', webRoutes);
 
-
-const cat = new Kitten({ name: 'ntdat models' });
-cat.save();
 
 //test connection
 //self running funtion
