@@ -4,7 +4,7 @@ const { getAllUsers, getUserById,
 
 const User = require("../models/user");
 const getHomepage = async (req, res) => {
-    let results = [];
+    let results = await User.find({});
     return res.render('home.ejs', { listUsers: results });
 }
 
@@ -31,13 +31,6 @@ const getUpdatePage = async (req, res) => {
 const postCreateUser = async (req, res) => {
 
     let { email, name, city } = req.body;
-
-    console.log(">>>email: ", email, ">>>name: ", name, ">>>city: ", city,);
-    // mysql
-    // let [results, fields] = await connection.query(
-    //     `INSERT INTO Users (email , name , city )VALUES (?,?,?)`, [email, name, city]);
-    // console.log(">>check results: ", results);
-
     //mongoDb
     await User.create({
         email: email,
