@@ -2,12 +2,14 @@ require('dotenv').config();
 const express = require('express');// commonhjs
 const configViewEngine = require('./config/viewEngine');
 const webRoutes = require('./routes/web');
-const connection = require('./config/database')
+const connection = require('./config/database');
+const Kitten = require('./models/Kitten');
 
 //console.log("check", process.env);
 const app = express();// app express
 const port = process.env.PORT || 8081; // port
 const hostname = process.env.HOST_NAME;
+
 
 // config request.body
 app.use(express.json()); // Used to parse JSON bodies 
@@ -17,15 +19,24 @@ app.use(express.urlencoded({ extended: true })); //Parse URL-encoded bodies
 //config template engine
 configViewEngine(app);
 
-//test connection
-connection();
-
-
 //khai báo route
-app.use('/', webRoutes)
+app.use('/', webRoutes);
 
-//Chạy server
-app.listen(port, hostname, () => {
-    console.log('Example app listening on port ${port}')
-});
+
+const cat = new Kitten({ name: 'ntdat models' });
+cat.save();
+
+//test connection
+//self running funtion
+(async () => {
+    await connection();
+    //Chạy server
+    app.listen(port, hostname, () => {
+        console.log(`Backend zero app listening on port ${port}`)
+    });
+})()
+
+
+
+
 //app.listen(3000)
