@@ -49,9 +49,6 @@ const deleteRemoveUserAPI = async (req, res) => {
     });
 }
 
-
-
-
 module.exports = {
     getUsersAPI,
     postCreateUserAPI,
