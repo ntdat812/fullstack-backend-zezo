@@ -3,6 +3,7 @@ const express = require('express');// commonhjs
 const configViewEngine = require('./config/viewEngine');
 const webRoutes = require('./routes/web');
 const apiRoutes = require('./routes/api');
+const fileUpload = require('express-fileupload');
 
 const connection = require('./config/database');
 
@@ -11,6 +12,8 @@ const app = express();// app express
 const port = process.env.PORT || 8081; // port
 const hostname = process.env.HOST_NAME;
 
+// config fileupload ( lưu ý thứ tự đặt config)
+app.use(fileUpload());
 
 // config request.body
 app.use(express.json()); // Used to parse JSON bodies 
